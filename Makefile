@@ -1,4 +1,4 @@
-.PHONY: setup data lab train infer test
+.PHONY: setup data lab train infer test mlflow
 
 setup:
 	uv sync
@@ -25,3 +25,6 @@ infer:
 
 test:
 	uv run pytest -v
+
+mlflow:
+	uv run mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db
