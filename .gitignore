@@ -9,6 +9,10 @@ data/
 # MLflow
 mlruns/
 
+# Models
+models/
+output/
+
 # IDE
 .idea/
 .vscode/
@@ -20,6 +24,7 @@ mlruns/
 
 # Claude
 .claude/settings.local.json
+.mcp.json
 
 # Marimo
 notebooks/__marimo__/

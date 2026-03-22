@@ -14,6 +14,10 @@ def evaluate_model(y_true: pd.Series, y_pred: pd.Series) -> dict[str, float]:
     Returns:
         Dictionary with evaluation metrics
     """
+    # Reset indices to avoid alignment issues
+    y_true = y_true.reset_index(drop=True)
+    y_pred = y_pred.reset_index(drop=True)
+
     rmse = root_mean_squared_error(y_true, y_pred)
     mae = mean_absolute_error(y_true, y_pred)
     r2 = r2_score(y_true, y_pred)

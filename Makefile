@@ -1,4 +1,4 @@
-.PHONY: setup data lab
+.PHONY: setup data lab train infer test
 
 setup:
 	uv sync
@@ -16,3 +16,12 @@ data:
 
 lab:
 	uv run marimo edit notebooks/
+
+train:
+	uv run python scripts/train.py
+
+infer:
+	uv run python scripts/infer.py
+
+test:
+	uv run pytest -v
