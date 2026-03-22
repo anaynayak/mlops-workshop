@@ -17,3 +17,9 @@ mlruns/
 # OS
 .DS_Store
 .envrc
+
+# Claude
+.claude/settings.local.json
+
+# Marimo
+notebooks/__marimo__/
