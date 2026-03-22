@@ -8,4 +8,7 @@ dependencies = [
     "marimo",
     "pandas",
     "pyarrow",
+    "scikit-learn",
+    "mlflow",
+    "joblib",
 ]
