@@ -26,9 +26,9 @@ def _():
 @app.cell
 def _(pd, prepare_features):
     print("## Load Data")
-    _df_raw = pd.read_parquet("data/raw/nyc_taxi.parquet")
+    _df_raw = pd.read_parquet("data/raw/nyc_taxi_sample.parquet")
     df = prepare_features(_df_raw)
-    print(f"Dataset: {len(df):,} rows")
+    print(f"Dataset: {len(df):,} rows (10% sample)")
     return (df,)
 
 

@@ -27,8 +27,8 @@ def _():
 @app.cell
 def _(pd, prepare_features):
     print("## Load and Prepare Data")
-    _df_raw = pd.read_parquet("data/raw/nyc_taxi.parquet")
-    print(f"Raw data: {len(_df_raw):,} rows")
+    _df_raw = pd.read_parquet("data/raw/nyc_taxi_sample.parquet")
+    print(f"Raw data: {len(_df_raw):,} rows (10% sample)")
 
     df = prepare_features(_df_raw)
     print(f"After filtering: {len(df):,} rows")

@@ -74,12 +74,12 @@ def _():
 def _(pd):
     import pandas as pd
 
-    _data_path = Path("data/raw/nyc_taxi.parquet")
+    _data_path = Path("data/raw/nyc_taxi_sample.parquet")
     if _data_path.exists():
         df = pd.read_parquet(_data_path)
-        print(f"✓ Loaded {len(df):,} rows, {len(df.columns)} columns")
+        print(f"✓ Loaded {len(df):,} rows, {len(df.columns)} columns (10% sample)")
     else:
-        print("✗ Data file not found. Run: make data")
+        print("✗ Data file not found. Run: python scripts/sample_data.py")
         df = None
     return (df,)
 

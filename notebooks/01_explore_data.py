@@ -15,8 +15,8 @@ def _():
 
 @app.cell
 def _(pd):
-    df = pd.read_parquet("data/raw/nyc_taxi.parquet")
-    print(f"Loaded {len(df):,} rows, {len(df.columns)} columns")
+    df = pd.read_parquet("data/raw/nyc_taxi_sample.parquet")
+    print(f"Loaded {len(df):,} rows, {len(df.columns)} columns (10% sample)")
     return (df,)
 
 

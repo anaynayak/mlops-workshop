@@ -1,4 +1,4 @@
-.PHONY: setup data lab train infer test mlflow
+.PHONY: setup data sample lab train infer test mlflow
 
 setup:
 	uv sync
@@ -13,6 +13,9 @@ data:
 		mkdir -p data/raw; \
 		wget -O data/raw/nyc_taxi.parquet "$$WORKSHOP_SAMPLE_URL"; \
 	fi
+
+sample:
+	uv run python scripts/sample_data.py
 
 lab:
 	uv run marimo edit notebooks/
