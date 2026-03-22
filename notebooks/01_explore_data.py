@@ -1,11 +1,5 @@
 import marimo
 
-import plotly.express as px
-import plotly.graph_objects as go
-from mlops_workshop.features import prepare_features
-import plotly
-
-
 __generated_with = "0.21.1"
 app = marimo.App()
 
@@ -15,7 +9,8 @@ def _():
     import marimo as mo
     import pandas as pd
     import numpy as np
-    return mo, np, pd
+    import plotly.express as px
+    return mo, np, pd, px
 
 
 @app.cell
@@ -68,7 +63,10 @@ def _(df):
 def _(df):
     print("Correlation: trip_miles vs trip_time")
     corr = df['trip_miles'].corr(df['trip_time'])
-    print(f"Correlation: {corr:.3f}"@app.cell
+    print(f"Correlation: {corr:.3f}")
+
+
+@app.cell
 def _(df):
     print("Potential feature: PULocationID (pickup location)")
     print(f"Unique locations: {df['PULocationID'].nunique()}")
@@ -128,70 +126,65 @@ def _(df):
 
 @app.cell
 def _(df, px):
-    df_clean = df[(df['trip_time'] >= 60) & (df['trip_time'] <= 7200)].copy()
-    sample = df_clean.sample(min(50000, len(df_clean)), random_state=42)
-    fig = px.histogram(sample, x='trip_time', nbins=50,
-                       title='Trip Time Distribution',
-                       labels={'trip_time': 'Trip Time (seconds)'})
-    fig
+    _df_clean = df[(df['trip_time'] >= 60) & (df['trip_time'] <= 7200)]
+    _sample = _df_clean.sample(min(50000, len(_df_clean)), random_state=42)
+    _fig = px.histogram(_sample, x='trip_time', nbins=50,
+                        title='Trip Time Distribution',
+                        labels={'trip_time': 'Trip Time (seconds)'})
+    _fig
 
 
 @app.cell
 def _(df, px):
-    print("Visualization: Trips by hour of day")
-    hourly = df.groupby('pickup_hour').size().reset_index(name='count')
-    fig = px.bar(hourly, x='pickup_hour', y='count',
-                 title='Trips by Hour of Day',
-                 labels={'pickup_hour': 'Hour', 'count': 'Number of Trips'})
-    fig.update_xaxes(dtick=1)
-    fig
+    _hourly = df.groupby('pickup_hour').size().reset_index(name='count')
+    _fig = px.bar(_hourly, x='pickup_hour', y='count',
+                  title='Trips by Hour of Day',
+                  labels={'pickup_hour': 'Hour', 'count': 'Number of Trips'})
+    _fig.update_xaxes(dtick=1)
+    _fig
 
 
 @app.cell
 def _(df, px):
-    print("Visualization: Average trip time by hour")
-    hourly_avg = df.groupby('pickup_hour')['trip_time'].mean().reset_index()
-    hourly_avg['trip_time_min'] = hourly_avg['trip_time'] / 60
-    fig = px.line(hourly_avg, x='pickup_hour', y='trip_time_min',
-                  title='Average Trip Time by Hour',
-                  labels={'pickup_hour': 'Hour', 'trip_time_min': 'Avg Trip Time (min)'})
-    fig.update_xaxes(dtick=1)
-    fig
+    _hourly_avg = df.groupby('pickup_hour')['trip_time'].mean().reset_index()
+    _hourly_avg['trip_time_min'] = _hourly_avg['trip_time'] / 60
+    _fig = px.line(_hourly_avg, x='pickup_hour', y='trip_time_min',
+                   title='Average Trip Time by Hour',
+                   labels={'pickup_hour': 'Hour', 'trip_time_min': 'Avg Trip Time (min)'})
+    _fig.update_xaxes(dtick=1)
+    _fig
 
 
 @app.cell
 def _(df, px):
-    print("Visualization: Trip time vs trip miles (sampled)")
-    df_clean = df[(df['trip_time'] >= 60) & (df['trip_time'] <= 7200) & (df['trip_miles'] > 0) & (df['trip_miles'] < 50)].copy()
-    sample = df_clean.sample(min(10000, len(df_clean)), random_state=42)
-    fig = px.scatter(sample, x='trip_miles', y='trip_time',
-                     title='Trip Time vs Trip Miles',
-                     labels={'trip_miles': 'Trip Miles', 'trip_time': 'Trip Time (seconds)'},
-                     opacity=0.3)
-    fig
+    _df_clean = df[(df['trip_time'] >= 60) & (df['trip_time'] <= 7200) & (df['trip_miles'] > 0) & (df['trip_miles'] < 50)]
+    _sample = _df_clean.sample(min(10000, len(_df_clean)), random_state=42)
+    _fig = px.scatter(_sample, x='trip_miles', y='trip_time',
+                      title='Trip Time vs Trip Miles',
+                      labels={'trip_miles': 'Trip Miles', 'trip_time': 'Trip Time (seconds)'},
+                      opacity=0.3)
+    _fig
 
 
 @app.cell
 def _(df, px):
-    print("Visualization: Top 10 pickup locations")
-    top_pu = df['PULocationID'].value_counts().head(10).reset_index()
-    top_pu.columns = ['PULocationID', 'count']
-    fig = px.bar(top_pu, x='PULocationID', y='count',
-                 title='Top 10 Pickup Locations',
-                 labels={'PULocationID': 'Location ID', 'count': 'Number of Trips'})
-    fig
+    _top_pu = df['PULocationID'].value_counts().head(10).reset_index()
+    _top_pu.columns = ['PULocationID', 'count']
+    _fig = px.bar(_top_pu, x='PULocationID', y='count',
+                  title='Top 10 Pickup Locations',
+                  labels={'PULocationID': 'Location ID', 'count': 'Number of Trips'})
+    _fig
 
 
 @app.cell
 def _(df, px):
-    print("Visualization: Trips by day of week")
-    days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    daily = df.groupby('day_of_week').size().reset_index(name='count')
-    daily['day'] = daily['day_of_week'].map(lambda x: days[x])
-    fig = px.bar(daily, x='day', y='count',
-                 title='Trips by Day of Week',
-                 labels={'day': 'Day', 'count': 'Number of Trips'})
-    fig
+    _days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    _daily = df.groupby('day_of_week').size().reset_index(name='count')
+    _daily['day'] = _daily['day_of_week'].map(lambda x: _days[x])
+    _fig = px.bar(_daily, x='day', y='count',
+                  title='Trips by Day of Week',
+                  labels={'day': 'Day', 'count': 'Number of Trips'})
+    _fig
 
 
 if __name__ == "__main__":
