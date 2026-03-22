@@ -1,22 +1,22 @@
 """Model evaluation for NYC Taxi trip duration prediction."""
 
-import pandas as pd
+import numpy as np
 from sklearn.metrics import root_mean_squared_error, mean_absolute_error, r2_score
 
 
-def evaluate_model(y_true: pd.Series, y_pred: pd.Series) -> dict[str, float]:
+def evaluate_model(y_true, y_pred) -> dict[str, float]:
     """Evaluate model predictions.
 
     Args:
-        y_true: Actual values
-        y_pred: Predicted values
+        y_true: Actual values (Series or array)
+        y_pred: Predicted values (Series or array)
 
     Returns:
         Dictionary with evaluation metrics
     """
-    # Reset indices to avoid alignment issues
-    y_true = y_true.reset_index(drop=True)
-    y_pred = y_pred.reset_index(drop=True)
+    # Convert to numpy arrays for consistent handling
+    y_true = np.asarray(y_true)
+    y_pred = np.asarray(y_pred)
 
     rmse = root_mean_squared_error(y_true, y_pred)
     mae = mean_absolute_error(y_true, y_pred)
@@ -24,7 +24,7 @@ def evaluate_model(y_true: pd.Series, y_pred: pd.Series) -> dict[str, float]:
 
     # MAPE - avoid division by zero
     mask = y_true > 0
-    mape = (abs(y_true[mask] - y_pred[mask]) / y_true[mask]).mean() * 100
+    mape = (np.abs(y_true[mask] - y_pred[mask]) / y_true[mask]).mean() * 100
 
     return {
         "rmse": rmse,
