@@ -8,40 +8,39 @@ app = marimo.App()
 def _():
     import marimo as mo
     import pandas as pd
-    from pathlib import Path
-    return Path, mo, pd
+    return pd,
 
 
 @app.cell
-def _(Path, pd):
-    data_path = Path("data/raw/nyc_taxi.parquet")
-    df = pd.read_parquet(data_path)
-    f"Loaded {len(df)} rows"
+def _(pd):
+    df = pd.read_parquet("data/raw/nyc_taxi.parquet")
+    f"Loaded {len(df):,} rows, {len(df.columns)} columns"
     return (df,)
 
 
 @app.cell
 def _(df):
-    df.head(10)
-    return
-
-
-@app.cell
-def _(df):
-    df.describe()
-    return
+    df.columns.tolist()
 
 
 @app.cell
 def _(df):
     df.dtypes
-    return
+
+
+@app.cell
+def _(df):
+    df.head(10)
+
+
+@app.cell
+def _(df):
+    df[["trip_time", "trip_miles", "base_passenger_fare"]].describe()
 
 
 @app.cell
 def _(df):
     df.isnull().sum()
-    return
 
 
 if __name__ == "__main__":
