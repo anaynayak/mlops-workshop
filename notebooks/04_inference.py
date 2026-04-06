@@ -72,7 +72,9 @@ def _(mlflow):
         for _run in _runs:
             _rmse = _run.data.metrics.get("rmse", "N/A")
             _r2 = _run.data.metrics.get("r2", "N/A")
-            print(f"  - {_run.info.run_name}: RMSE={_rmse:.2f if isinstance(_rmse, float) else _rmse}, R²={_r2:.4f if isinstance(_r2, float) else _r2}")
+            _rmse_str = f"{_rmse:.2f}" if isinstance(_rmse, float) else str(_rmse)
+            _r2_str = f"{_r2:.4f}" if isinstance(_r2, float) else str(_r2)
+            print(f"  - {_run.info.run_name}: RMSE={_rmse_str}, R²={_r2_str}")
     else:
         print("No experiments found. Run: make train")
 
