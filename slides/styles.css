@@ -1,0 +1,4 @@
+/* Hide the slide navigator sidebar */
+#slidev-goto-dialog {
+  display: none !important;
+}
