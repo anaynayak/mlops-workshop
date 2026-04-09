@@ -14,16 +14,16 @@ def _():
     from mlops_workshop.evaluate import evaluate_model, print_metrics
     from mlops_workshop.train import save_model
     from pathlib import Path
+
     return (
-        Path,
         RandomForestRegressor,
         evaluate_model,
         get_feature_columns,
         get_target_column,
+        mo,
         pd,
         prepare_features,
         print_metrics,
-        save_model,
         train_test_split,
     )
 
@@ -33,6 +33,7 @@ def _():
     print("# Stage 3: Hyperparameter Tuning")
     print("")
     print("Try different configurations and compare results.")
+    return
 
 
 @app.cell
@@ -52,39 +53,69 @@ def _(df, get_feature_columns, get_target_column, train_test_split):
         X, y, test_size=0.2, random_state=42
     )
     print(f"Train: {len(X_train):,} | Test: {len(X_test):,}")
-    return X_train, X_test, y_train, y_test
+    return X_test, X_train, y_test, y_train
 
 
 @app.cell
 def _(mo):
-    mo.md("## Try Different Hyperparameters")
+    mo.md("""
+    ## Try Different Hyperparameters
+    """)
+    return
 
 
 @app.cell
-def _(X_train, y_train, X_test, y_test, RandomForestRegressor, evaluate_model, print_metrics):
+def _(
+    RandomForestRegressor,
+    X_test,
+    X_train,
+    evaluate_model,
+    print_metrics,
+    y_test,
+    y_train,
+):
     print("### Run 1: n_estimators=50, max_depth=5")
     _model = RandomForestRegressor(n_estimators=50, max_depth=5, random_state=42, n_jobs=-1)
     _model.fit(X_train, y_train)
     _metrics = evaluate_model(y_test, _model.predict(X_test))
     print_metrics(_metrics)
+    return
 
 
 @app.cell
-def _(X_train, y_train, X_test, y_test, RandomForestRegressor, evaluate_model, print_metrics):
+def _(
+    RandomForestRegressor,
+    X_test,
+    X_train,
+    evaluate_model,
+    print_metrics,
+    y_test,
+    y_train,
+):
     print("### Run 2: n_estimators=100, max_depth=10")
     _model = RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42, n_jobs=-1)
     _model.fit(X_train, y_train)
     _metrics = evaluate_model(y_test, _model.predict(X_test))
     print_metrics(_metrics)
+    return
 
 
 @app.cell
-def _(X_train, y_train, X_test, y_test, RandomForestRegressor, evaluate_model, print_metrics):
+def _(
+    RandomForestRegressor,
+    X_test,
+    X_train,
+    evaluate_model,
+    print_metrics,
+    y_test,
+    y_train,
+):
     print("### Run 3: n_estimators=100, max_depth=15")
     _model = RandomForestRegressor(n_estimators=100, max_depth=15, random_state=42, n_jobs=-1)
     _model.fit(X_train, y_train)
     _metrics = evaluate_model(y_test, _model.predict(X_test))
     print_metrics(_metrics)
+    return
 
 
 @app.cell
@@ -97,6 +128,7 @@ def _(mo):
 
     **This is where MLflow comes in.**
     """)
+    return
 
 
 if __name__ == "__main__":

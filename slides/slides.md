@@ -79,7 +79,7 @@ Target: predict `trip_time` in seconds
 
 ---
 
-# Questions
+# Training Questions
 
 <v-clicks depth=2>
 
@@ -94,6 +94,21 @@ Target: predict `trip_time` in seconds
 * What gets promoted to the next environment?
   * Is it the code?
   * Is it the model? What are the trade-offs?
+
+</v-clicks>
+
+---
+
+# Inference Questions
+
+<v-clicks depth=2>
+
+* Where do we manage the joblib files in production?
+  * How do we trace it back to the source artifacts?
+* How do we ensure that the next model promoted is better than previous?
+  * Accuracy metrics
+  * Challenger v/s champion
+* How do we roll-back to previous model version?
 
 </v-clicks>
 

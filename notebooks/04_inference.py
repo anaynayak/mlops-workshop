@@ -12,12 +12,14 @@ def _():
     from mlops_workshop.train import load_model
     from mlops_workshop.evaluate import evaluate_model, print_metrics
     from pathlib import Path
+
     return (
         Path,
         evaluate_model,
         get_feature_columns,
         get_target_column,
         load_model,
+        mo,
         pd,
         prepare_features,
         print_metrics,
@@ -29,6 +31,7 @@ def _():
     print("# Stage 4: Batch Inference")
     print("")
     print("Load a trained model and run batch predictions.")
+    return
 
 
 @app.cell
@@ -54,7 +57,14 @@ def _(Path, load_model):
 
 
 @app.cell
-def _(df, model, get_feature_columns, get_target_column, evaluate_model, print_metrics):
+def _(
+    df,
+    evaluate_model,
+    get_feature_columns,
+    get_target_column,
+    model,
+    print_metrics,
+):
     if model is not None:
         print("## Run Predictions")
         X = df[get_feature_columns()]
@@ -69,10 +79,11 @@ def _(df, model, get_feature_columns, get_target_column, evaluate_model, print_m
         print("\n### Evaluation on Full Dataset")
         _metrics = evaluate_model(y_true, predictions)
         print_metrics(_metrics)
+    return
 
 
 @app.cell
-def _(df, model, get_feature_columns, Path):
+def _(Path, df, get_feature_columns, model):
     if model is not None:
         print("## Save Predictions")
         _output = df.copy()
@@ -82,6 +93,7 @@ def _(df, model, get_feature_columns, Path):
         Path("output").mkdir(exist_ok=True)
         _output.to_parquet("output/predictions.parquet", index=False)
         print("✓ Predictions saved to output/predictions.parquet")
+    return
 
 
 @app.cell
@@ -96,6 +108,7 @@ def _(mo):
 
     **This is where a Model Registry comes in.**
     """)
+    return
 
 
 if __name__ == "__main__":
