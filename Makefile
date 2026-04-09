@@ -1,4 +1,4 @@
-.PHONY: setup data sample lab train infer test mlflow
+.PHONY: setup data sample lab train infer test mlflow slides
 
 setup:
 	uv sync
@@ -31,3 +31,6 @@ test:
 
 mlflow:
 	uv run mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db
+
+slides:
+	cd slides && npm run dev
