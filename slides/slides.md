@@ -108,9 +108,48 @@ Target: predict `trip_time` in seconds
 * How do we ensure that the next model promoted is better than previous?
   * Accuracy metrics
   * Challenger v/s champion
+  * Should we compare challenger v/s champion metrics?
 * How do we roll-back to previous model version?
 
 </v-clicks>
+
+---
+
+# The MLOps Pipeline
+<Excalidraw
+  drawFilePath="./draw/03.excalidraw"
+  class="w-[800px]"
+  :darkMode="false"
+  :background="false"
+/>
+
+---
+
+# Go-live Questions
+
+<v-clicks depth=2>
+
+* What can go wrong?
+  * Schema changes
+  * Missing data 
+  * feature drift e.g. seasonal variations (holiday season, school start)
+* Can the model degrade in production?
+  * Inference drift
+  * Concept drift
+* How do we safeguard against such issues?
+
+</v-clicks>
+
+---
+
+# The MLOps Pipeline
+<Excalidraw
+  drawFilePath="./draw/04.excalidraw"
+  class="w-[800px]"
+  :darkMode="false"
+  :background="false"
+/>
+
 
 ---
 
@@ -196,52 +235,16 @@ Alert on degradation
 
 ---
 
-# Workshop Stages
-
-| Stage | Topic | Pipeline Step | Notebook |
-|-------|-------|---------------|----------|
-| 0 | Setup & Environment | — | `00_setup.py` |
-| 1 | Data Exploration | Feature Engineering | `01_explore_data.py` |
-| 2 | Baseline Model | Training + Validation | `02_baseline.py` |
-| 3 | Tuning + MLflow | Experimentation | `03_tuning.py` |
-| 4 | Batch Inference | Inference + Registry | `04_inference.py` |
-| 5 | Operations | Drift + Monitoring | `05_operations.py` |
-
----
-
-# Recap
-
-<div class="grid grid-cols-2 gap-8 mt-8">
-<div>
-
-### What we built
-- EDA pipeline with visualizations
-- Feature engineering module
-- Trained Random Forest model
-- MLflow experiment tracking
-- Batch inference pipeline
-
-</div>
-<div>
-
-### What we learned
-- ML starts messy — MLOps makes it reliable
-- Track experiments from day one
-- Test data, models, and pipelines
-- Monitor for drift and degradation
-- Automate everything you can
-
-</div>
-</div>
-
----
-
 # Resources
 
 - **Workshop repo:** `github.com/anaynayak/mlops-workshop`
 - **MLflow docs:** mlflow.org
 - **Slidev docs:** sli.dev
 - **Marimo docs:** marimo.io
+- **Books:** Designing Machine Learning Systems - Chip Huyen
+- **Web** 
+  - https://huyenchip.com/mlops/
+  - https://ml-ops.org/
 
 <div class="abs-br m-6 text-sm opacity-50">
   Thank you!
