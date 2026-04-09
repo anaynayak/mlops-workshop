@@ -29,4 +29,7 @@ output/
 # Marimo
 notebooks/__marimo__/
 
+# Instructor backups
+*.ignore.py
+
 node_modules/

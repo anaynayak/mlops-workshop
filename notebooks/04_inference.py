@@ -8,19 +8,16 @@ app = marimo.App()
 def _():
     import marimo as mo
     import pandas as pd
-    import mlflow
     from mlops_workshop.features import prepare_features, get_feature_columns, get_target_column
     from mlops_workshop.train import load_model
     from mlops_workshop.evaluate import evaluate_model, print_metrics
     from pathlib import Path
-
     return (
         Path,
         evaluate_model,
         get_feature_columns,
         get_target_column,
         load_model,
-        mlflow,
         pd,
         prepare_features,
         print_metrics,
@@ -29,10 +26,9 @@ def _():
 
 @app.cell
 def _():
-    print("# MLOps Workshop - Stage 4: Batch Inference + Model Registry")
+    print("# Stage 4: Batch Inference")
     print("")
     print("Load a trained model and run batch predictions.")
-    return
 
 
 @app.cell
@@ -45,77 +41,25 @@ def _(pd, prepare_features):
 
 
 @app.cell
-def _():
-    print("## Option 1: Load from Local File")
-    return
-
-
-@app.cell
 def _(Path, load_model):
+    print("## Load Model")
     _model_path = Path("models/rf_model.joblib")
     if _model_path.exists():
-        model_local = load_model(_model_path)
+        model = load_model(_model_path)
         print(f"✓ Loaded model from {_model_path}")
     else:
-        print(f"✗ Model not found at {_model_path}")
-        print("  Run: make train")
-        model_local = None
-    return (model_local,)
+        print(f"✗ Model not found. Run: make train")
+        model = None
+    return (model,)
 
 
 @app.cell
-def _():
-    print("## Option 2: Load from MLflow Registry")
-    return
-
-
-@app.cell
-def _(mlflow):
-    mlflow.set_tracking_uri("sqlite:///mlruns/mlflow.db")
-    print("MLflow tracking URI: sqlite:///mlruns/mlflow.db")
-    return
-
-
-@app.cell
-def _(mlflow):
-    print("### List Runs")
-    _client = mlflow.tracking.MlflowClient()
-    _experiment = _client.get_experiment_by_name("nyc-taxi-duration")
-    if _experiment:
-        _runs = _client.search_runs(_experiment.experiment_id, max_results=5)
-        print(f"Found {len(_runs)} runs:")
-        for _run in _runs:
-            _rmse = _run.data.metrics.get("rmse", "N/A")
-            _r2 = _run.data.metrics.get("r2", "N/A")
-            _rmse_str = f"{_rmse:.2f}" if isinstance(_rmse, float) else str(_rmse)
-            _r2_str = f"{_r2:.4f}" if isinstance(_r2, float) else str(_r2)
-            print(f"  - {_run.info.run_name}: RMSE={_rmse_str}, R²={_r2_str}")
-    else:
-        print("No experiments found. Run: make train")
-    return
-
-
-@app.cell
-def _():
-    print("## Run Batch Inference")
-    return
-
-
-@app.cell
-def _(
-    df,
-    evaluate_model,
-    get_feature_columns,
-    get_target_column,
-    model_local,
-    print_metrics,
-):
-    if model_local is not None:
-        print("### Predictions with Local Model")
+def _(df, model, get_feature_columns, get_target_column, evaluate_model, print_metrics):
+    if model is not None:
+        print("## Run Predictions")
         X = df[get_feature_columns()]
         y_true = df[get_target_column()]
-
-        predictions = model_local.predict(X)
+        predictions = model.predict(X)
 
         print(f"Generated {len(predictions):,} predictions")
         print(f"\nSample predictions (first 10):")
@@ -125,41 +69,33 @@ def _(
         print("\n### Evaluation on Full Dataset")
         _metrics = evaluate_model(y_true, predictions)
         print_metrics(_metrics)
-    else:
-        print("No model loaded. Skipping predictions.")
-    return
 
 
 @app.cell
-def _():
-    print("## Model Registry Concepts")
-    print("In production, you would:")
-    print("  1. Register best model in MLflow Model Registry")
-    print("  2. Promote to 'Staging' for validation")
-    print("  3. Promote to 'Production' for serving")
-    print("  4. Version models for rollback capability")
-    print("Example:")
-    print("  mlflow.register_model(model_uri, 'nyc-taxi-model')")
-    return
+def _(df, model, get_feature_columns, Path):
+    if model is not None:
+        print("## Save Predictions")
+        _output = df.copy()
+        _output["predicted_trip_time"] = model.predict(df[get_feature_columns()])
+        _output["prediction_error"] = abs(_output["trip_time"] - _output["predicted_trip_time"])
+
+        Path("output").mkdir(exist_ok=True)
+        _output.to_parquet("output/predictions.parquet", index=False)
+        print("✓ Predictions saved to output/predictions.parquet")
 
 
 @app.cell
-def _():
-    return
+def _(mo):
+    mo.md("""
+    ## Problem
 
+    This works for a single model file. But in production:
+    - How do you version models?
+    - How do you promote models from staging to production?
+    - How do you roll back to a previous version?
 
-@app.cell
-def _():
-    print("## Summary")
-    print("")
-    print("Stage 4 covered:")
-    print("  - Loading models from local files")
-    print("  - Loading models from MLflow")
-    print("  - Running batch inference")
-    print("  - Model registry concepts")
-    print("")
-    print("Next: Stage 5 - Operations (testing, CI/CD)")
-    return
+    **This is where a Model Registry comes in.**
+    """)
 
 
 if __name__ == "__main__":
