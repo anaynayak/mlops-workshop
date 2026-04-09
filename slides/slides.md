@@ -177,6 +177,14 @@ Target: predict `trip_time` in seconds
 
 ---
 
+# What else? (Things we already know)
+
+* Unit / Integration tests
+* CI / CD
+* Data quality
+
+---
+
 # The MLOps Pipeline
 
 <div class="grid grid-cols-5 gap-4 text-center text-sm mt-4">
@@ -262,9 +270,6 @@ Alert on degradation
 # Resources
 
 - **Workshop repo:** `github.com/anaynayak/mlops-workshop`
-- **MLflow docs:** mlflow.org
-- **Slidev docs:** sli.dev
-- **Marimo docs:** marimo.io
 - **Books:** Designing Machine Learning Systems - Chip Huyen
 - **Web** 
   - https://huyenchip.com/mlops/
