@@ -39,7 +39,7 @@ make lab
 ```
 
 **Open the notebook:**
-- `notebooks/01_explore_data.py` — EDA with visualizations
+- `notebooks/00_setup.py` — Setup
 
 The data: **20M NYC taxi trips** (FHVHV dataset)
 Target: predict `trip_time` in seconds

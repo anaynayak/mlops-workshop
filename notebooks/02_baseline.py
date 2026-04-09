@@ -14,7 +14,19 @@ def _():
     from mlops_workshop.evaluate import evaluate_model, print_metrics
     from mlops_workshop.train import save_model
     from pathlib import Path
-    return mo, pd, train_test_split, RandomForestRegressor, prepare_features, get_feature_columns, get_target_column, evaluate_model, print_metrics, save_model, Path
+
+    return (
+        Path,
+        RandomForestRegressor,
+        evaluate_model,
+        get_feature_columns,
+        get_target_column,
+        pd,
+        prepare_features,
+        print_metrics,
+        save_model,
+        train_test_split,
+    )
 
 
 @app.cell
@@ -22,6 +34,7 @@ def _():
     print("# MLOps Workshop - Stage 2: Baseline Model")
     print("")
     print("Build a baseline model to predict trip duration.")
+    return
 
 
 @app.cell
@@ -42,6 +55,7 @@ def _(get_feature_columns, get_target_column):
     print("")
     print(f"Features: {get_feature_columns()}")
     print(f"Target: {get_target_column()}")
+    return
 
 
 @app.cell
@@ -55,11 +69,11 @@ def _(df, get_feature_columns, get_target_column, train_test_split):
     )
     print(f"Training set: {len(X_train):,} rows")
     print(f"Test set: {len(X_test):,} rows")
-    return X_train, X_test, y_train, y_test
+    return X_test, X_train, y_test, y_train
 
 
 @app.cell
-def _(X_train, y_train, RandomForestRegressor):
+def _(RandomForestRegressor, X_train, y_train):
     print("## Train Baseline Model")
     print("Training Random Forest (n_estimators=100, max_depth=10)...")
 
@@ -75,7 +89,7 @@ def _(X_train, y_train, RandomForestRegressor):
 
 
 @app.cell
-def _(model, X_test, y_test, evaluate_model, print_metrics):
+def _(X_test, evaluate_model, model, print_metrics, y_test):
     print("## Evaluate Model")
     y_pred = model.predict(X_test)
     metrics = evaluate_model(y_test, y_pred)
@@ -84,21 +98,23 @@ def _(model, X_test, y_test, evaluate_model, print_metrics):
 
 
 @app.cell
-def _(model, pd, get_feature_columns):
+def _(get_feature_columns, model, pd):
     print("## Feature Importance")
     _importance = pd.DataFrame({
         "feature": get_feature_columns(),
         "importance": model.feature_importances_
     }).sort_values("importance", ascending=False)
     print(_importance)
+    return
 
 
 @app.cell
-def _(model, save_model, Path):
+def _(Path, model, save_model):
     print("## Save Model")
     Path("models").mkdir(exist_ok=True)
     save_model(model, "models/baseline_model.joblib")
     print("✓ Model saved to models/baseline_model.joblib")
+    return
 
 
 @app.cell
@@ -108,7 +124,7 @@ def _(metrics):
     print(f"  RMSE: {metrics['rmse_minutes']:.2f} minutes")
     print(f"  R²: {metrics['r2']:.4f}")
     print("")
-    print("Next: Stage 3 - Tune hyperparameters and track with MLflow")
+    return
 
 
 if __name__ == "__main__":

@@ -7,108 +7,61 @@ app = marimo.App()
 @app.cell
 def _():
     import marimo as mo
-    print("# MLOps Workshop - Stage 0: Setup")
-    print("")
-    print("Welcome! This notebook checks your environment and loads the data.")
-    return (mo,)
-
-
-@app.cell
-def _():
-    print("## Environment Check")
-    print("")
-
-
-@app.cell
-def _():
+    import pandas as pd
     import sys
-    print(f"Python version: {sys.version}")
-    print(f"Python path: {sys.executable}")
-
-
-@app.cell
-def _():
-    print("## Required Packages")
-    print("")
-
-
-@app.cell
-def _():
-    import pandas
-    import sklearn
-    import mlflow
-    import joblib
-    import plotly
-
-    print(f"pandas: {pandas.__version__}")
-    print(f"scikit-learn: {sklearn.__version__}")
-    print(f"mlflow: {mlflow.__version__}")
-    print(f"joblib: {joblib.__version__}")
-    print(f"plotly: {plotly.__version__}")
-
-
-@app.cell
-def _():
-    print("## Project Structure")
-    print("")
-
-
-@app.cell
-def _():
     from pathlib import Path
 
-    print("Project directories:")
-    for _p in ["data/raw", "models", "output", "mlruns", "src/mlops_workshop"]:
-        _path = Path(_p)
-        _exists = "✓" if _path.exists() else "✗"
-        print(f"  {_exists} {_p}")
+    return Path, mo, pd
 
 
 @app.cell
-def _():
-    print("## Load Data")
-    print("")
+def _(mo):
+    mo.md("""
+    # MLOps Workshop — Stage 0: Setup
+    """)
+    return
 
 
 @app.cell
-def _(pd):
-    import pandas as pd
+def _(Path, mo):
+    _packages = ["pandas", "sklearn", "mlflow", "plotly"]
+    _dirs = ["data/raw", "models", "output", "mlruns", "src/mlops_workshop"]
+    _checks = "**Environment:** " + " | ".join(
+        f"{'✓' if __import__('importlib').util.find_spec(p) else '✗'} {p}"
+        for p in _packages
+    )
+    _structure = "**Project:** " + " | ".join(
+        f"{'✓' if Path(d).exists() else '✗'} {d}"
+        for d in _dirs
+    )
+    mo.md(f"{_checks}\n\n{_structure}")
+    return
 
+
+@app.cell
+def _(Path, pd):
     _data_path = Path("data/raw/nyc_taxi_sample.parquet")
     if _data_path.exists():
         df = pd.read_parquet(_data_path)
-        print(f"✓ Loaded {len(df):,} rows, {len(df.columns)} columns (10% sample)")
+        print(f"Loaded {len(df):,} rows, {len(df.columns)} columns")
     else:
-        print("✗ Data file not found. Run: python scripts/sample_data.py")
+        print("Data not found. Run: make data && make sample")
         df = None
     return (df,)
 
 
 @app.cell
 def _(df):
-    if df is not None:
-        print("## Data Preview")
-        print("")
-        print(df.head(5))
+    df.head(10000)
+    return
 
 
 @app.cell
-def _(df):
-    if df is not None:
-        print("## Target Variable")
-        print("")
-        print("We'll predict `trip_time` (duration in seconds)")
-        print(f"Mean: {df['trip_time'].mean() / 60:.1f} minutes")
-        print(f"Median: {df['trip_time'].median() / 60:.1f} minutes")
-
-
-@app.cell
-def _():
-    print("## Next Steps")
-    print("")
-    print("Environment ready! Continue to:")
-    print("- Stage 1: Data exploration (01_explore_data.py)")
-    print("- Stage 2: Baseline model (02_baseline.py)")
+def _(df, mo):
+    mo.md(f"""
+    **Target:** `trip_time` (trip duration in seconds)  \nMean: **{df['trip_time'].mean() / 60:.1f} min** | Median: **{df['trip_time'].median() / 60:.1f} min**
+    """)
+    return
 
 
 if __name__ == "__main__":
