@@ -18,7 +18,7 @@ sample:
 	uv run python scripts/sample_data.py
 
 lab:
-	uv run marimo edit notebooks/
+	uv run marimo edit notebooks/ --watch
 
 train:
 	uv run python scripts/train.py
