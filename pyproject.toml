@@ -12,6 +12,7 @@ dependencies = [
     "mlflow",
     "joblib",
     "plotly",
+    "xgboost>=3.2.0",
 ]
 
 [build-system]
