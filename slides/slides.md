@@ -46,6 +46,16 @@ Target: predict `trip_time` in seconds
 
 ---
 
+# Current state
+<Excalidraw
+  drawFilePath="./draw/00.excalidraw"
+  class="w-[800px]"
+  :darkMode="false"
+  :background="false"
+/>
+
+---
+
 # The Question
 
 <div class="text-center mt-20">
