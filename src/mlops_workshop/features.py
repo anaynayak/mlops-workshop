@@ -23,7 +23,7 @@ def prepare_features(df: pd.DataFrame) -> pd.DataFrame:
     df["day_of_week"] = df["pickup_datetime"].dt.dayofweek
 
     # Select features and target
-    feature_cols = ["trip_miles", "PULocationID", "DOLocationID", "pickup_hour", "day_of_week"]
+    feature_cols = get_feature_columns()
     target_col = "trip_time"
 
     result = df[feature_cols + [target_col]].copy()
