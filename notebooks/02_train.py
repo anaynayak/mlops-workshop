@@ -31,7 +31,7 @@ def _():
 
 @app.cell
 def _():
-    print("# MLOps Workshop - Stage 2: Baseline Model")
+    print("# Stage 2: Model Training")
     print("")
     print("Build a baseline model to predict trip duration.")
     return
@@ -120,7 +120,7 @@ def _(Path, model, save_model):
 @app.cell
 def _(metrics):
     print("## Summary")
-    print("Baseline model performance:")
+    print("Model performance:")
     print(f"  RMSE: {metrics['rmse_minutes']:.2f} minutes")
     print(f"  R²: {metrics['r2']:.4f}")
     print("")

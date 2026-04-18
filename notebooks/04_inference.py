@@ -28,7 +28,7 @@ def _():
 
 @app.cell
 def _():
-    print("# Stage 4: Batch Inference")
+    print("# Stage 4: Inference")
     print("")
     print("Load a trained model and run batch predictions.")
     return

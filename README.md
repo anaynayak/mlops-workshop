@@ -23,10 +23,10 @@ make lab
 | Notebook | Topic |
 |---|---|
 | `00_setup.py` | Environment setup and data loading |
-| `01_explore_data.py` | Exploratory data analysis |
-| `02_baseline.py` | Baseline model training |
-| `03_tuning.py` | Hyperparameter tuning with MLflow tracking |
-| `04_inference.py` | Batch inference and model serving |
+| `01_features.py` | Feature engineering |
+| `02_train.py` | Model training |
+| `03_experiment.py` | Experimentation with MLflow tracking |
+| `04_inference.py` | Inference and model serving |
 
 ## Commands
 

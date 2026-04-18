@@ -25,7 +25,7 @@ NYC Taxi Trips - regression task (predict trip duration)
 Marimo notebooks are Python files that can be run two ways:
 
 1. **Interactive editing**: `uv run marimo edit notebooks/` - opens in browser
-2. **As scripts**: `uv run python notebooks/01_explore_data.py` - runs in terminal
+2. **As scripts**: `uv run python notebooks/01_features.py` - runs in terminal
 
 When running as scripts, use `print()` statements to see outputs. Marimo cells that just have expressions won't show anything in terminal mode.
 

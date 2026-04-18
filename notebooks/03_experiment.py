@@ -30,7 +30,7 @@ def _():
 
 @app.cell
 def _():
-    print("# Stage 3: Hyperparameter Tuning")
+    print("# Stage 3: Experimentation")
     print("")
     print("Try different configurations and compare results.")
     return
