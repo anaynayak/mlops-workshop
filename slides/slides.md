@@ -48,7 +48,7 @@ Target: predict `trip_time` in seconds
 
 # How the Model Works
 <Excalidraw
-  drawFilePath="./draw/06.excalidraw"
+  drawFilePath="./draw/model_primer.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"
@@ -97,7 +97,7 @@ Tune model complexity
 
 # Current state
 <Excalidraw
-  drawFilePath="./draw/00.excalidraw"
+  drawFilePath="./draw/current_state.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"
@@ -120,7 +120,7 @@ Tune model complexity
 
 # The MLOps Pipeline
 <Excalidraw
-  drawFilePath="./draw/01.excalidraw"
+  drawFilePath="./draw/pipeline_base.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"
@@ -130,7 +130,7 @@ Tune model complexity
 
 # The MLOps Pipeline
 <Excalidraw
-  drawFilePath="./draw/02.excalidraw"
+  drawFilePath="./draw/pipeline_training.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"
@@ -176,7 +176,7 @@ Tune model complexity
 
 # The MLOps Pipeline
 <Excalidraw
-  drawFilePath="./draw/03.excalidraw"
+  drawFilePath="./draw/pipeline_inference.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"
@@ -203,7 +203,7 @@ Tune model complexity
 
 # The MLOps Pipeline
 <Excalidraw
-  drawFilePath="./draw/04.excalidraw"
+  drawFilePath="./draw/pipeline_monitoring.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"
@@ -228,7 +228,7 @@ Tune model complexity
 # Feature Stores
 
 <Excalidraw
-  drawFilePath="./draw/05.excalidraw"
+  drawFilePath="./draw/feature_stores.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"
