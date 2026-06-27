@@ -44,6 +44,10 @@ src: ./pages/06-pipeline-inference.md
 ---
 
 ---
+src: ./pages/06b-registry.md
+---
+
+---
 src: ./pages/07-pipeline-monitoring.md
 ---
 
