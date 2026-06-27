@@ -261,3 +261,19 @@ Same mechanism — the alias is still the single source of "what's live."
 TIER 0 — where this goes next. We deliberately do NOT build the automation; it
 drags in scheduling and CI/CD. Name it, draw the arrow, move on.
 -->
+
+---
+
+# Questions the Registry Should Answer
+
+<v-clicks depth=2>
+
+* Where do we manage model files in production — and trace them back to source?
+* How do we ensure the next promoted model is better than the last?
+  * Accuracy metrics
+  * Challenger vs champion — and should we compare them?
+* How do we roll back to a previous version?
+
+</v-clicks>
+
+<!-- Moved from "Inference Questions". Review coverage against this section. -->

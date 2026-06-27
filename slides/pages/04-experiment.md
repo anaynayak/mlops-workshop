@@ -198,6 +198,26 @@ Landed here via the skip link? You lived the pain already — this is the consol
 
 ---
 
+# Questions Experimentation Raises
+
+<v-clicks depth=2>
+
+* How do we know which model is the best?
+  * 10s / 100s of models across hyperparameters / model types
+* How do we trace and recreate the exact same model?
+  * Which features / code
+  * Which hyperparameters / model
+  * Artifact lineage back to source
+
+</v-clicks>
+
+<!--
+Moved from the old "Training Questions". Review: does the Experimentation /
+MLflow tracking section actually answer these?
+-->
+
+---
+
 # Current state
 <Excalidraw
   drawFilePath="./draw/current_state.excalidraw"

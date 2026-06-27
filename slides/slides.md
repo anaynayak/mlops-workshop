@@ -86,15 +86,54 @@ src: ./pages/06b-registry.md
 
 ---
 layout: section
-section: Monitoring & Operations
+section: CI/CD & Environments
 ---
 
-# Monitoring & Operations
+# CI/CD & Environments
+
+Placeholder — to be built out.
+
+---
+src: ./pages/cicd.md
+---
+
+---
+layout: section
+section: Monitoring
+---
+
+# Monitoring
 
 Models rot in production — watch them.
 
 ---
 src: ./pages/07-pipeline-monitoring.md
+---
+
+---
+layout: section
+section: Data Versioning
+---
+
+# Data Versioning
+
+Reproducibility when the data shifts under you.
+
+---
+src: ./pages/data-versioning.md
+---
+
+---
+layout: section
+section: Feature Stores
+---
+
+# Feature Stores
+
+One definition of a feature — training and serving.
+
+---
+src: ./pages/feature-stores.md
 ---
 
 ---

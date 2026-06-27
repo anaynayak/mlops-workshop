@@ -1,6 +1,7 @@
-# The MLOps Pipeline
+# Feature Stores
+
 <Excalidraw
-  drawFilePath="./draw/pipeline_inference.excalidraw"
+  drawFilePath="./draw/feature_stores.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"

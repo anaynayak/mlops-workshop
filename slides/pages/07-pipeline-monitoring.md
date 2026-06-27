@@ -1,31 +1,25 @@
-# The MLOps Pipeline
-<Excalidraw
-  drawFilePath="./draw/pipeline_monitoring.excalidraw"
-  class="w-[800px]"
-  :darkMode="false"
-  :background="false"
-/>
-
----
-
-# Data Versioning
+# What Could Go Wrong?
 
 <v-clicks depth=2>
 
-* MLFlow provides traceability 
-* How do we get to reproducibility if the underlying data changes? 
-  * History tables instead of in-place updates
-  * Data version control systems e.g. https://dvc.org/  / https://git-lfs.com/
-  * Tagged with experiments to provide full reproducibility.
+* What can go wrong?
+  * Schema changes
+  * Missing data
+  * Feature drift — e.g. seasonal variations (holiday season, school start)
+* Can the model degrade in production?
+  * Inference drift
+  * Concept drift
+* How do we safeguard against these?
 
 </v-clicks>
 
+<!-- Moved from "Go-live Questions" — the pain that motivates monitoring. -->
+
 ---
 
-# Feature Stores
-
+# The MLOps Pipeline
 <Excalidraw
-  drawFilePath="./draw/feature_stores.excalidraw"
+  drawFilePath="./draw/pipeline_monitoring.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"
