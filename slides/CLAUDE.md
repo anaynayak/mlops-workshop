@@ -43,8 +43,8 @@ skipping the Tier-1/2 walkthrough**, then continue.
 Pattern:
 ```md
 # Section Entry Slide
-<div class="abs-tr m-4 text-sm opacity-60">
-<Link to="my-review">Already discovered it? Skip to recap →</Link>
+<div class="abs-br m-4 text-sm opacity-60">
+<Link to="my-review">Skip to section recap →</Link>
 </div>
 
 ... walkthrough slides ...

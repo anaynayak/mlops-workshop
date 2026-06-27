@@ -1,7 +1,7 @@
 # Ship Your Best Model
 
-<div class="abs-tr m-4 text-sm opacity-60">
-<Link to="registry-review">Already discovered it? Skip to recap →</Link>
+<div class="abs-br m-4 text-sm opacity-60">
+<Link to="registry-review">Skip to section recap →</Link>
 </div>
 
 <div class="text-xl mt-6">

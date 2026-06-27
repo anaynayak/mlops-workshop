@@ -1,7 +1,7 @@
 # Where to Start
 
-<div class="abs-tr m-4 text-sm opacity-60">
-<Link to="experiment-review">Already discovered it? Skip to recap →</Link>
+<div class="abs-br m-4 text-sm opacity-60">
+<Link to="experiment-review">Skip to section recap →</Link>
 </div>
 
 **Your goal: beat the baseline RMSE.**
