@@ -109,13 +109,19 @@ def list_versions(name: str = MODEL_NAME) -> pd.DataFrame:
     Returns:
         DataFrame with `version`, `run_id`, `aliases`, `creation_time`.
     """
-    versions = _client().search_model_versions(f"name='{name}'")
+    client = _client()
+    # Aliases live on the registered model as {alias: version}; invert to version -> [aliases].
+    alias_map: dict[str, list[str]] = {}
+    for alias, version in client.get_registered_model(name).aliases.items():
+        alias_map.setdefault(str(version), []).append(alias)
+
+    versions = client.search_model_versions(f"name='{name}'")
     return pd.DataFrame(
         [
             {
                 "version": int(v.version),
                 "run_id": v.run_id,
-                "aliases": list(v.aliases),
+                "aliases": alias_map.get(str(v.version), []),
                 "creation_time": pd.to_datetime(v.creation_timestamp, unit="ms"),
             }
             for v in versions
