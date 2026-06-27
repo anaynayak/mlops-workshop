@@ -46,7 +46,7 @@ def _(pd, prepare_features):
 @app.cell
 def _(Path, load_model):
     print("## Load Model")
-    _model_path = Path("models/rf_model.joblib")
+    _model_path = Path("models/baseline_model.joblib")
     if _model_path.exists():
         model = load_model(_model_path)
         print(f"✓ Loaded model from {_model_path}")
