@@ -13,6 +13,31 @@ src: ./pages/06b-registry.md
 To reorder/insert sections, edit the include list in `slides.md`. Page files can
 contain multiple slides separated by `---`.
 
+## Sections (dividers + breadcrumb)
+
+Slidev has no native "section" concept; it's assembled from two pieces, both
+driven off a custom `section:` frontmatter field:
+
+1. **Divider slides** open each major section, inline in `slides.md`:
+   ```md
+   ---
+   layout: section
+   section: Model Registry
+   ---
+   # Model Registry
+   One stable pointer to what's live.
+   ```
+2. **Persistent breadcrumb** (`global-bottom.vue`) shows the current section in
+   the bottom-left of every content slide. It walks back to the nearest slide
+   with a `section:` frontmatter, so you only tag each section's opening slide
+   (the divider). It hides itself on `section`/`cover` layouts and when no
+   section is set. `global-bottom.vue` is auto-loaded by Slidev from this dir.
+
+To add a section: add a `layout: section` divider with a `section:` field in
+`slides.md` before the section's `src:` includes. Nothing else needed — the
+breadcrumb picks it up. The first non-divider section (Introduction) is tagged
+via `section:` on its `src:` include block instead of a divider.
+
 ## Pedagogy: elastic tiers (read this before editing content)
 
 The workshop teaches by **discover-by-building**: participants do a task manually,

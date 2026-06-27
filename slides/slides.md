@@ -21,7 +21,17 @@ From Notebook to Production in 2 Hours
 
 ---
 src: ./pages/01-intro.md
+section: Introduction
 ---
+
+---
+layout: section
+section: The Model & Metrics
+---
+
+# The Model & Metrics
+
+How it predicts — and how we score it.
 
 ---
 src: ./pages/02-model-primer.md
@@ -32,8 +42,26 @@ src: ./pages/03-metrics.md
 ---
 
 ---
+layout: section
+section: Experimentation
+---
+
+# Experimentation
+
+Beat the baseline — then tame the chaos.
+
+---
 src: ./pages/04-experiment.md
 ---
+
+---
+layout: section
+section: Into Production
+---
+
+# Into Production
+
+What does it take to run this for real?
 
 ---
 src: ./pages/05-pipeline-training.md
@@ -44,12 +72,37 @@ src: ./pages/06-pipeline-inference.md
 ---
 
 ---
+layout: section
+section: Model Registry
+---
+
+# Model Registry
+
+One stable pointer to what's live.
+
+---
 src: ./pages/06b-registry.md
 ---
 
 ---
+layout: section
+section: Monitoring & Operations
+---
+
+# Monitoring & Operations
+
+Models rot in production — watch them.
+
+---
 src: ./pages/07-pipeline-monitoring.md
 ---
+
+---
+layout: section
+section: Wrap-up
+---
+
+# Wrap-up
 
 ---
 src: ./pages/08-summary.md
