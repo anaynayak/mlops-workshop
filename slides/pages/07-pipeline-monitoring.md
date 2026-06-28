@@ -1,3 +1,19 @@
+# The MLOps Pipeline
+<Excalidraw
+  drawFilePath="./draw/pipeline_monitoring.excalidraw"
+  class="w-[820px]"
+  :darkMode="false"
+  :background="false"
+/>
+
+<!--
+The payoff: the pipeline becomes a cycle. Drift on the inputs (Feature Drift) or
+the outputs/quality (Inference Drift) feeds back into retraining — challenger →
+validate → promote. Monitoring is what closes the loop back to experimentation.
+-->
+
+---
+
 # What Could Go Wrong?
 
 <v-clicks depth=2>
@@ -10,25 +26,6 @@
   * Inference drift
   * Concept drift
 * How do we safeguard against these?
+  * Alert thresholds, automated retrain triggers, rollback to the previous champion
 
 </v-clicks>
-
-<!-- Moved from "Go-live Questions" — the pain that motivates monitoring. -->
-
----
-
-# The MLOps Pipeline
-<Excalidraw
-  drawFilePath="./draw/pipeline_monitoring.excalidraw"
-  class="w-[800px]"
-  :darkMode="false"
-  :background="false"
-/>
-
----
-
-# What else? (Things we already know)
-
-* Unit / Integration tests
-* CI / CD
-* Data quality
