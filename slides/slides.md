@@ -76,7 +76,7 @@ section: CI/CD & Environments
 
 # CI/CD & Environments
 
-Placeholder — to be built out.
+Shipping code and models to production — safely.
 
 ---
 src: ./pages/cicd.md
