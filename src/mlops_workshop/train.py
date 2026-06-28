@@ -15,7 +15,8 @@ def train_model(
     random_state: int = 42,
     n_estimators: int = 100,
     max_depth: int = 10,
-) -> tuple[RandomForestRegressor, pd.DataFrame, pd.DataFrame]:
+    feature_columns: list[str] | None = None,
+) -> tuple[RandomForestRegressor, pd.DataFrame, pd.Series]:
     """Train a Random Forest model for trip duration prediction.
 
     Args:
@@ -24,11 +25,12 @@ def train_model(
         random_state: Random seed for reproducibility
         n_estimators: Number of trees in the forest
         max_depth: Maximum depth of trees
+        feature_columns: Columns to train on. Defaults to the baseline workshop features.
 
     Returns:
         Tuple of (trained model, X_test, y_test)
     """
-    feature_cols = get_feature_columns()
+    feature_cols = feature_columns or get_feature_columns()
     target_col = get_target_column()
 
     X = df[feature_cols]

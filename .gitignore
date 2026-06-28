@@ -29,6 +29,10 @@ output/
 # Marimo
 notebooks/__marimo__/
 
+# Feast demo artifacts
+feature_repo/data/
+feature_repo/__pycache__/
+
 # Instructor backups
 *.ignore.py
 
