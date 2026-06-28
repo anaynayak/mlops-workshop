@@ -226,15 +226,12 @@ MLflow tracking section actually answer these?
   :background="false"
 />
 
----
+<!--
+A breath before the production pivot — a visual recap of the offline path the
+data takes: Data Eng → Feature Eng → Model Training → Inference. Keep it quick;
+it's reiteration, not new material. Note the diagram shows the pipeline *stages*,
+not the MLflow tracking we just added — so frame it as "this is everything we
+have so far," then land the pivot: none of it is actually running in production.
+The next divider asks the question that drives the rest of the workshop.
+-->
 
-# The Question
-
-<div class="text-center mt-20">
-  <div class="text-6xl font-bold mb-8">
-    What does it take<br/>to run this in production?
-  </div>
-  <div class="text-xl opacity-70">
-    That's what we'll answer in the next 2 hours.
-  </div>
-</div>

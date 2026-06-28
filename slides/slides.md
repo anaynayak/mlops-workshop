@@ -59,9 +59,11 @@ layout: section
 section: Into Production
 ---
 
-# Into Production
+# What does it take<br/>to run this in production?
 
-What does it take to run this for real?
+<div class="text-xl opacity-70 mt-6">
+That's what we'll spend the rest of the workshop answering.
+</div>
 
 ---
 src: ./pages/05-pipeline-training.md
