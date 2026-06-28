@@ -97,6 +97,19 @@ src: ./pages/07-pipeline-monitoring.md
 
 ---
 layout: section
+section: Serving
+---
+
+# Serving
+
+Everything so far was batch. The product wanted an answer *now*.
+
+---
+src: ./pages/serving.md
+---
+
+---
+layout: section
 section: Data Versioning
 ---
 

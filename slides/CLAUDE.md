@@ -84,7 +84,10 @@ routeAlias: my-review
 |---|---|---|---|
 | Experimentation → MLflow | `pages/04-experiment.md` | `experiment-review` | done |
 | Model Registry | `pages/06b-registry.md` | `registry-review` | done |
-| Serving / Monitoring (mini-loops) | TBD | — | not yet built |
+
+Tier-0 talk-only sections have **no** recap/skip-link (no walkthrough to skip):
+- **Serving** (`pages/serving.md`) — batch→online transition; deployment strategies; bridges to Feature Stores via train-serve skew.
+- **Monitoring** (`pages/07-pipeline-monitoring.md`) — layered monitoring, delayed labels.
 
 When you build a new deep-dive section, add its recap slide + `routeAlias`, a skip
 link on the entry slide, and a row to this table.
