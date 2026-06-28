@@ -71,26 +71,26 @@ def register_run(
 
 
 def set_alias(alias: str, version: int | str, name: str = MODEL_NAME) -> None:
-    """Point an alias (e.g. "production") at a specific model version.
+    """Point an alias (e.g. "champion") at a specific model version.
 
     Promotion and rollback are both just moving an alias to a different version.
 
     Args:
-        alias: Alias to set, e.g. "production" or "staging".
+        alias: Alias to set, e.g. "champion" (live) or "challenger" (candidate).
         version: Version number to point the alias at.
         name: Registered model name.
     """
     _client().set_registered_model_alias(name=name, alias=alias, version=str(version))
 
 
-def load_model(alias: str = "production", name: str = MODEL_NAME):
+def load_model(alias: str = "champion", name: str = MODEL_NAME):
     """Load the model currently behind an alias.
 
     Consumers (inference jobs) reference the alias, never a file path or version —
     so promoting/rolling back never requires touching their code.
 
     Args:
-        alias: Alias to resolve, e.g. "production".
+        alias: Alias to resolve, e.g. "champion".
         name: Registered model name.
 
     Returns:
