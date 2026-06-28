@@ -56,27 +56,14 @@ src: ./pages/04-experiment.md
 
 ---
 layout: section
-section: Into Production
+section: Model Registry
 ---
 
 # What does it take<br/>to run this in production?
 
 <div class="text-xl opacity-70 mt-6">
-That's what we'll spend the rest of the workshop answering.
+Start here: we have a pile of experiments — which one do we actually ship?
 </div>
-
----
-src: ./pages/05-pipeline-training.md
----
-
----
-layout: section
-section: Model Registry
----
-
-# Model Registry
-
-One stable pointer to what's live.
 
 ---
 src: ./pages/06b-registry.md

@@ -200,7 +200,7 @@ Landed here via the skip link? You lived the pain already — this is the consol
 
 # Current state
 <Excalidraw
-  drawFilePath="./draw/current_state.excalidraw"
+  drawFilePath="./draw/pipeline_experiments.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"

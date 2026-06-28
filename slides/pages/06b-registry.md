@@ -270,7 +270,59 @@ drags in scheduling and CI/CD. Name it, draw the arrow, move on.
 
 # The MLOps Pipeline
 <Excalidraw
-  drawFilePath="./draw/pipeline_inference.excalidraw"
+  drawFilePath="./draw/pipeline_registry.excalidraw"
+  class="w-[800px]"
+  :darkMode="false"
+  :background="false"
+/>
+
+---
+
+# Picking the Champion
+
+<div class="grid grid-cols-2 gap-8 mt-6">
+<div>
+
+A challenger isn't the champion just because its RMSE looks good.
+
+- The champion was trained on **last quarter's** data
+- The challenger trained on **new** data — different trips, different conditions
+- A "perfect" champion can look unbeatable on the old yardstick — or a challenger can win for the **wrong reasons**
+
+</div>
+<div>
+
+<div class="text-xl mt-8">
+
+Comparing raw metrics is **not enough**.
+
+</div>
+
+<div class="mt-6">
+
+We need a deliberate **validation** step before promoting:
+
+- Evaluate both on a **fair, current** holdout
+- Guardrails / thresholds the challenger must clear
+- Then decide — does it *actually* beat the champion?
+
+</div>
+
+</div>
+</div>
+
+<!--
+The conversation that motivates Model Validation. The trap: judging challenger vs
+champion on mismatched data. Ask the room — "your champion was perfect last
+quarter; with new data, can a challenger ever win, and how would you know it's
+real?" The validation stage on the next diagram is the answer.
+-->
+
+---
+
+# The MLOps Pipeline
+<Excalidraw
+  drawFilePath="./draw/pipeline_validation.excalidraw"
   class="w-[800px]"
   :darkMode="false"
   :background="false"
