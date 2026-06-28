@@ -26,7 +26,8 @@ make lab
 | `01_features.py` | Feature engineering |
 | `02_train.py` | Model training |
 | `03_experiment.py` | Experimentation with MLflow tracking |
-| `04_inference.py` | Inference and model serving |
+| `04_inference.py` | Batch inference |
+| `05_feature_store.py` | Feast feature store and serving endpoint |
 
 ## Commands
 
@@ -38,6 +39,8 @@ make lab
 | `make lab` | Launch marimo notebooks |
 | `make train` | Run training script |
 | `make infer` | Run inference script |
+| `make feature-store` | Build Feast data, materialize online features, and train the feature-store model |
+| `make serve` | Launch the prediction API backed by Feast online features |
 | `make test` | Run tests |
 | `make mlflow` | Launch MLflow UI |
 | `make slides` | Launch slide deck |
@@ -60,8 +63,36 @@ The workshop covers the full MLOps pipeline:
 - **Validation** — Test model performance against thresholds (RMSE, R², MAE)
 - **Promotion** — Register and stage models in a Model Registry (v1, v2, v3...)
 - **Inference** — Score new data in production (batch or real-time)
+- **Feature Stores** — Reuse the same historical route feature for training and a live endpoint
 - **Monitoring** — Detect feature drift and inference drift, alert on degradation
 - **Data Versioning** — Reproducibility through history tables and data version control
+
+## Feature Store Demo
+
+Build the Feast repo, materialize online features, and train the model:
+
+```bash
+make feature-store
+```
+
+Then start the serving endpoint:
+
+```bash
+make serve
+```
+
+Example request:
+
+```bash
+curl -X POST http://127.0.0.1:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "trip_miles": 4.2,
+    "PULocationID": 138,
+    "DOLocationID": 236,
+    "pickup_datetime": "2024-01-08T09:15:00"
+  }'
+```
 
 ## Resources
 
