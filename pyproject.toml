@@ -13,6 +13,9 @@ dependencies = [
     "joblib",
     "plotly",
     "xgboost>=3.2.0",
+    "feast>=0.64.0",
+    "fastapi>=0.135.1",
+    "uvicorn>=0.34.0",
 ]
 
 [build-system]
