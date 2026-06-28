@@ -80,13 +80,13 @@ A versioned home for models, **decoupled from code**.
 
 ```
 nyc-taxi-duration
-├── v1   ← @production
+├── v1   ← @champion
 ├── v2
-└── v3   ← @staging
+└── v3   ← @challenger
 ```
 
 - Every promotion = a new **version**
-- **Aliases** (`@production`) point at a version
+- **Aliases** — `@champion` (live) and `@challenger` (candidate) — point at a version
 - Consumers reference the **alias**, never a path or version number
 
 </div>
@@ -94,9 +94,9 @@ nyc-taxi-duration
 
 <div class="mt-8">
 
-**Promotion** = move `@production` to a newer version.
+**Promote** = move `@champion` to the challenger's version.
 
-**Rollback** = move it back.
+**Rollback** = move `@champion` back.
 
 **Inference code never changes.**
 
@@ -125,19 +125,22 @@ Use the helpers in `mlops_workshop.registry` — you wire the steps together:
 from mlops_workshop import registry
 
 # 1. Find a candidate — runs sorted best-first
-registry.find_runs(metric="rmse")        # eyeball it, copy a run_id
+registry.find_runs(metric="rmse")            # eyeball it, copy a run_id
 
 # 2. Register that run's model as a new version
-mv = registry.register_run("<run_id>")   # -> version N
+mv = registry.register_run("<run_id>")       # -> version N
 
-# 3. Promote: point @production at it
-registry.set_alias("production", mv.version)
+# 3. Stage it as the challenger
+registry.set_alias("challenger", mv.version)
+
+# 4. It beats the champion? Promote it.
+registry.set_alias("champion", mv.version)
 ```
 
 Then the consumer — `04_inference.py` — stops caring about files:
 
 ```python
-model = registry.load_model("production")   # no path, no version
+model = registry.load_model("champion")      # always the live model
 ```
 
 <!--
@@ -158,10 +161,10 @@ Ship a worse `v2`, then realise it in production:
 ```python
 registry.list_versions()
 #  version  aliases
-#       2   [production]   ← the bad one
+#       2   [champion]   ← the bad one
 #       1   []
 
-registry.set_alias("production", 1)
+registry.set_alias("champion", 1)
 ```
 
 </div>
@@ -172,7 +175,7 @@ registry.set_alias("production", 1)
 `04_inference.py` is **untouched**. It still says:
 
 ```python
-registry.load_model("production")
+registry.load_model("champion")
 ```
 
 …it just resolves to v1 again.
@@ -198,22 +201,23 @@ routeAlias: registry-review
 **The idea**
 
 - A model is a **versioned artifact**, not a file glued into code
-- An alias (`@production`) points at one version
+- `@champion` points at the live version; `@challenger` is the candidate
 - Inference loads the **alias** — so promotion and rollback never touch consumer code
 
 </div>
 <div>
 
-**The four moves** — `mlops_workshop.registry`
+**The moves** — `mlops_workshop.registry`
 
 ```python
-registry.find_runs(metric="rmse")      # pick a candidate
-mv = registry.register_run(run_id)     # -> new version
-registry.set_alias("production", mv.version)   # promote
-registry.load_model("production")      # consumer loads
+registry.find_runs(metric="rmse")             # pick a candidate
+mv = registry.register_run(run_id)            # -> new version
+registry.set_alias("challenger", mv.version)  # stage it
+registry.set_alias("champion", mv.version)    # promote when it wins
+registry.load_model("champion")               # consumer loads
 ```
 
-Rollback = `set_alias("production", <older version>)`.
+Rollback = `set_alias("champion", <older version>)`.
 
 </div>
 </div>
@@ -261,6 +265,16 @@ Same mechanism — the alias is still the single source of "what's live."
 TIER 0 — where this goes next. We deliberately do NOT build the automation; it
 drags in scheduling and CI/CD. Name it, draw the arrow, move on.
 -->
+
+---
+
+# The MLOps Pipeline
+<Excalidraw
+  drawFilePath="./draw/pipeline_inference.excalidraw"
+  class="w-[800px]"
+  :darkMode="false"
+  :background="false"
+/>
 
 ---
 

@@ -1,7 +1,0 @@
-# The MLOps Pipeline
-<Excalidraw
-  drawFilePath="./draw/pipeline_inference.excalidraw"
-  class="w-[800px]"
-  :darkMode="false"
-  :background="false"
-/>

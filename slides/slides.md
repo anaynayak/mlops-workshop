@@ -70,10 +70,6 @@ src: ./pages/05-pipeline-training.md
 ---
 
 ---
-src: ./pages/06-pipeline-inference.md
----
-
----
 layout: section
 section: Model Registry
 ---
