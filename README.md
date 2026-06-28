@@ -42,6 +42,14 @@ make lab
 | `make mlflow` | Launch MLflow UI |
 | `make slides` | Launch slide deck |
 
+## Slides
+
+The Slidev deck lives in `slides/`.
+
+- Local preview: `make slides`
+- Static build: `cd slides && npm run build`
+- GitHub Pages: pushes to `main` automatically build and deploy the deck to Pages
+
 ## What You'll Learn
 
 The workshop covers the full MLOps pipeline:

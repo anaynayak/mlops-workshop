@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev",
-    "build": "slidev build",
+    "build": "node ./scripts/build.mjs",
     "export": "slidev export"
   },
   "dependencies": {

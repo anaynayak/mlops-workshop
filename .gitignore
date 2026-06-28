@@ -33,5 +33,6 @@ notebooks/__marimo__/
 *.ignore.py
 
 node_modules/
+slides/dist/
 
 *.png
