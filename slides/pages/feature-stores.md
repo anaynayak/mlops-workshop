@@ -110,15 +110,19 @@ TIER 0 — name the actual problem. This is where train-serve skew becomes concr
 
 <div class="mt-10">
 
-Toolkit, not magic:
+Main branch view: the building blocks are Feast itself.
 
 ```python
-from mlops_workshop import feature_store
+from feast import FeatureStore
 
-store, route_stats = feature_store.bootstrap_feature_store(raw_df)
-training_df = feature_store.build_training_dataframe(raw_df, store=store)
-online = feature_store.get_online_route_features(138, 236, store=store)
+store = FeatureStore(repo_path="feature_repo")
+training_df = store.get_historical_features(...)
+online = store.get_online_features(...)
 ```
+
+<div class="mt-6 text-sm opacity-70">
+The runnable end-to-end wiring lives on the feature-store demo branch.
+</div>
 
 </div>
 
@@ -149,9 +153,9 @@ routeAlias: feature-store-review
 **The moves**
 
 ```python
-store, _ = feature_store.bootstrap_feature_store(raw_df)
-training_df = feature_store.build_training_dataframe(raw_df, store=store)
-online = feature_store.get_online_route_features(138, 236, store=store)
+store = FeatureStore(repo_path="feature_repo")
+training_df = store.get_historical_features(...)
+online = store.get_online_features(...)
 ```
 
 Train on `training_df`; serve with `online`.
