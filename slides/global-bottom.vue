@@ -20,22 +20,33 @@ const section = computed(() => {
 </script>
 
 <template>
-  <footer
-    v-if="section && currentLayout !== 'section' && currentLayout !== 'cover'"
-    class="section-crumb"
-  >
-    {{ section }}
+  <footer v-if="currentLayout !== 'section' && currentLayout !== 'cover'" class="global-footer">
+    <span v-if="section" class="section-crumb">{{ section }}</span>
+    <span class="slide-number">{{ currentPage }}</span>
   </footer>
 </template>
 
 <style scoped>
-.section-crumb {
+.global-footer {
   position: absolute;
   bottom: 0.6rem;
   left: 0.8rem;
+  right: 0.8rem;
+}
+
+.section-crumb {
+  position: absolute;
+  left: 0;
   font-size: 0.7rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  opacity: 0.4;
+}
+
+.slide-number {
+  position: absolute;
+  right: 0;
+  font-size: 0.7rem;
   opacity: 0.4;
 }
 </style>
