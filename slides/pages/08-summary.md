@@ -88,6 +88,6 @@ Alert on degradation
   - https://huyenchip.com/mlops/
   - https://ml-ops.org/
 
-<div class="abs-br m-6 text-sm opacity-50">
+<div class="abs-br mr-6 mb-10 text-sm opacity-50">
   Thank you!
 </div>
