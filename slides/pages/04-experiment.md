@@ -198,6 +198,23 @@ Landed here via the skip link? You lived the pain already — this is the consol
 
 ---
 
+# Current state
+<Excalidraw
+  drawFilePath="./draw/current_state.excalidraw"
+  class="w-[800px]"
+  :darkMode="false"
+  :background="false"
+/>
+
+<!--
+Where we are now: features → training → experiments pushed to the tracking store.
+Inference is faded out — we haven't taken this to production yet. That gap is the
+hook: everything offline works, but nothing is actually serving. It sets up the
+question that drives the rest of the workshop — how do we take this to prod?
+-->
+
+---
+
 # Questions Experimentation Raises
 
 <v-clicks depth=2>
@@ -214,24 +231,5 @@ Landed here via the skip link? You lived the pain already — this is the consol
 <!--
 Moved from the old "Training Questions". Review: does the Experimentation /
 MLflow tracking section actually answer these?
--->
-
----
-
-# Current state
-<Excalidraw
-  drawFilePath="./draw/current_state.excalidraw"
-  class="w-[800px]"
-  :darkMode="false"
-  :background="false"
-/>
-
-<!--
-A breath before the production pivot — a visual recap of the offline path the
-data takes: Data Eng → Feature Eng → Model Training → Inference. Keep it quick;
-it's reiteration, not new material. Note the diagram shows the pipeline *stages*,
-not the MLflow tracking we just added — so frame it as "this is everything we
-have so far," then land the pivot: none of it is actually running in production.
-The next divider asks the question that drives the rest of the workshop.
 -->
 
