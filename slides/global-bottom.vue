@@ -29,14 +29,15 @@ const section = computed(() => {
 <style scoped>
 .global-footer {
   position: absolute;
-  bottom: 0.6rem;
-  left: 0.8rem;
-  right: 0.8rem;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .section-crumb {
-  position: absolute;
-  left: 0;
   font-size: 0.7rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -44,8 +45,6 @@ const section = computed(() => {
 }
 
 .slide-number {
-  position: absolute;
-  right: 0;
   font-size: 0.7rem;
   opacity: 0.4;
 }
