@@ -130,6 +130,10 @@ section: Feature Stores
 
 One definition of a feature — training and serving.
 
+<div class="abs-br m-4 text-sm opacity-60">
+<Link to="feature-store-review">Skip to section recap →</Link>
+</div>
+
 ---
 src: ./pages/feature-stores.md
 ---

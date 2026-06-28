@@ -84,6 +84,7 @@ routeAlias: my-review
 |---|---|---|---|
 | Experimentation → MLflow | `pages/04-experiment.md` | `experiment-review` | done |
 | Model Registry | `pages/06b-registry.md` | `registry-review` | done |
+| Feature Stores | `pages/feature-stores.md` | `feature-store-review` | done |
 
 Tier-0 talk-only sections have **no** recap/skip-link (no walkthrough to skip):
 - **Serving** (`pages/serving.md`) — batch→online transition; deployment strategies; bridges to Feature Stores via train-serve skew.
