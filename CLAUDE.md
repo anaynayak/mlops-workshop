@@ -17,7 +17,7 @@ NYC Taxi Trips - regression task (predict trip duration)
 ## Commands
 
 - `make setup` - install dependencies
-- `make data` - download dataset from WORKSHOP_SAMPLE_URL
+- `make data` - download the workshop sample (set WORKSHOP_SAMPLE_URL to override the default)
 - `make lab` - launch marimo notebooks
 
 ## Marimo Notebooks

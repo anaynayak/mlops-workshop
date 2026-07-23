@@ -33,7 +33,7 @@ make lab
 | Command | Description |
 |---|---|
 | `make setup` | Install dependencies with uv |
-| `make data` | Download dataset (requires `WORKSHOP_SAMPLE_URL`) |
+| `make data` | Download the workshop sample (override with `WORKSHOP_SAMPLE_URL`) |
 | `make sample` | Create a sample from the full dataset |
 | `make lab` | Launch marimo notebooks |
 | `make train` | Run training script |

@@ -35,8 +35,8 @@ feature-store = [
 [tool.poe.tasks]
 setup  = { cmd = "uv sync", help = "Install base dependencies with uv" }
 setup-feature-store = { cmd = "uv sync --group feature-store", help = "Add feature-store (feast) dependencies" }
-data   = { cmd = "python scripts/get_data.py", help = "Download dataset from WORKSHOP_SAMPLE_URL" }
-sample = { cmd = "python scripts/sample_data.py", help = "Create a 10% sample of the full dataset" }
+data   = { cmd = "python scripts/get_data.py", help = "Download the workshop sample (WORKSHOP_SAMPLE_URL overrides)" }
+sample = { cmd = "python scripts/sample_data.py", help = "Create the notebook sample from the downloaded data" }
 lab    = { cmd = "marimo edit notebooks/ --watch", help = "Launch marimo notebooks" }
 train  = { cmd = "python scripts/train.py", help = "Run the training script" }
 infer  = { cmd = "python scripts/infer.py", help = "Run the batch inference script" }

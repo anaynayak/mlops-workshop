@@ -1,14 +1,21 @@
 #!/usr/bin/env python
-"""Download the workshop dataset from WORKSHOP_SAMPLE_URL.
+"""Download the workshop dataset.
 
-Cross-platform replacement for the old `wget` Makefile recipe: works on
-Windows, macOS, and Linux with only the Python standard library.
+Defaults to the sample published as a release on this repo, so attendees get a
+small (~27MB) file with zero configuration. Set WORKSHOP_SAMPLE_URL to override
+(e.g. to point at the full dataset or a different sample).
+
+Cross-platform (Windows/macOS/Linux) using only the Python standard library.
 """
 
 import os
-import sys
 import urllib.request
 from pathlib import Path
+
+DEFAULT_URL = (
+    "https://github.com/anaynayak/mlops-workshop/releases/download/"
+    "sample-v1/nyc_taxi_sample.parquet"
+)
 
 
 def main():
@@ -18,14 +25,10 @@ def main():
         print(f"Data already exists: {data_path}")
         return
 
-    url = os.environ.get("WORKSHOP_SAMPLE_URL")
-    if not url:
-        print("Error: WORKSHOP_SAMPLE_URL must be set")
-        sys.exit(1)
-
+    url = os.environ.get("WORKSHOP_SAMPLE_URL", DEFAULT_URL)
     data_path.parent.mkdir(parents=True, exist_ok=True)
 
-    print(f"Downloading dataset to {data_path} ...")
+    print(f"Downloading dataset from {url} ...")
     urllib.request.urlretrieve(url, data_path)
     print(f"Saved to: {data_path}")
 
