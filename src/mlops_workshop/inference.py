@@ -12,6 +12,7 @@ def predict(
     df: pd.DataFrame,
     model: RandomForestRegressor | None = None,
     model_path: str | Path | None = None,
+    feature_columns: list[str] | None = None,
 ) -> pd.Series:
     """Generate predictions for new data.
 
@@ -19,6 +20,7 @@ def predict(
         df: DataFrame with features
         model: Pre-loaded model (optional)
         model_path: Path to saved model (optional)
+        feature_columns: Columns to score. Defaults to the baseline workshop features.
 
     Returns:
         Series with predictions
@@ -29,7 +31,7 @@ def predict(
     if model is None:
         model = load_model(model_path)
 
-    feature_cols = get_feature_columns()
+    feature_cols = feature_columns or get_feature_columns()
     X = df[feature_cols]
 
     return pd.Series(model.predict(X), index=df.index)
@@ -39,6 +41,7 @@ def run_batch_inference(
     input_path: str | Path,
     output_path: str | Path,
     model_path: str | Path,
+    feature_columns: list[str] | None = None,
 ) -> pd.DataFrame:
     """Run batch inference on a parquet file.
 
@@ -46,6 +49,7 @@ def run_batch_inference(
         input_path: Path to input parquet file
         output_path: Path to save predictions
         model_path: Path to saved model
+        feature_columns: Columns to score. Defaults to the baseline workshop features.
 
     Returns:
         DataFrame with input data and predictions
@@ -53,7 +57,7 @@ def run_batch_inference(
     df = pd.read_parquet(input_path)
     model = load_model(model_path)
 
-    df["predicted_trip_time"] = predict(df, model=model)
+    df["predicted_trip_time"] = predict(df, model=model, feature_columns=feature_columns)
     df["prediction_error"] = abs(df["trip_time"] - df["predicted_trip_time"])
 
     output_path = Path(output_path)
