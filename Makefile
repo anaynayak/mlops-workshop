@@ -1,36 +1,33 @@
 .PHONY: setup data sample lab train infer test mlflow slides
 
+# Task definitions live in pyproject.toml under [tool.poe.tasks].
+# These targets are thin wrappers so `make <target>` still works on
+# machines that have make; the cross-platform entry point (Windows too)
+# is `uv run poe <target>`.
+
 setup:
 	uv sync
 
 data:
-	@if [ -f data/raw/nyc_taxi.parquet ]; then \
-		echo "Data already exists"; \
-	elif [ -z "$$WORKSHOP_SAMPLE_URL" ]; then \
-		echo "Error: WORKSHOP_SAMPLE_URL must be set"; \
-		exit 1; \
-	else \
-		mkdir -p data/raw; \
-		wget -O data/raw/nyc_taxi.parquet "$$WORKSHOP_SAMPLE_URL"; \
-	fi
+	uv run poe data
 
 sample:
-	uv run python scripts/sample_data.py
+	uv run poe sample
 
 lab:
-	uv run marimo edit notebooks/ --watch
+	uv run poe lab
 
 train:
-	uv run python scripts/train.py
+	uv run poe train
 
 infer:
-	uv run python scripts/infer.py
+	uv run poe infer
 
 test:
-	uv run pytest -v
+	uv run poe test
 
 mlflow:
-	uv run mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db
+	uv run poe mlflow
 
 slides:
-	cd slides && npm run dev
+	uv run poe slides
