@@ -1,0 +1,44 @@
+name: Inference Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  infer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Download data
+        run: |
+          mkdir -p data/raw
+          wget -O data/raw/nyc_taxi_sample.parquet "${{ vars.WORKSHOP_SAMPLE_URL }}"
+
+      - name: Download MLflow tracking data
+        run: |
+          RUN_ID=$(gh run list -R "${{ github.repository }}" -w "Training Pipeline" -s completed -L 1 --json databaseId -q '.[0].databaseId')
+          if [ -n "$RUN_ID" ]; then
+            gh run download "$RUN_ID" -R "${{ github.repository }}" -n mlruns
+            echo "Restored MLflow data from run $RUN_ID"
+          else
+            echo "No MLflow data found — run the Training Pipeline first"
+            exit 1
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run inference with champion model
+        run: uv run python notebooks/04_inference.py
+
+      - name: Upload predictions
+        uses: actions/upload-artifact@v4
+        with:
+          name: predictions
+          path: output/predictions.parquet
+          retention-days: 30
