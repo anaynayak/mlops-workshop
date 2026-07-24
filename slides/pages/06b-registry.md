@@ -119,34 +119,22 @@ addressed by alias, not a file glued into a script.
 
 # Promote With the Registry
 
-Use the helpers in `mlops_workshop.registry` — you wire the steps together:
+Use the helpers in `mlops_workshop.registry` — you wire the steps together (borrow from `snippets/registry_promote.py`):
 
-```python
-from mlops_workshop import registry
+<<< ../../snippets/registry_promote.py python
 
-# 1. Find a candidate — runs sorted best-first
-registry.find_runs(metric="rmse")            # eyeball it, copy a run_id
-
-# 2. Register that run's model as a new version
-mv = registry.register_run("<run_id>")       # -> version N
-
-# 3. Stage it as the challenger
-registry.set_alias("challenger", mv.version)
-
-# 4. It beats the champion? Promote it.
-registry.set_alias("champion", mv.version)
-```
-
-Then the consumer — `04_inference.py` — stops caring about files:
-
-```python
-model = registry.load_model("champion")      # always the live model
-```
+<div class="mt-2 text-sm opacity-70">
+This is the <strong>API</strong>, not the UI — <code>register_run</code> does what clicking
+"Register model" does, but reproducibly. One-shot alternative: register at log time with
+<code>log_model(model, name="model", registered_model_name="nyc-taxi-duration")</code>.
+</div>
 
 <!--
 TIER 1/2 BUILD. The notebook orchestration is THEIRS to write — these helpers
 are just the toolkit. Granular on purpose: no one-call "promote_best()", so
-they have to choose the winner and wire the flow themselves.
+they have to choose the winner and wire the flow themselves. Note we register from
+the API here — in the session we did it by hand in the UI; call out that the API
+call is the same action, just scriptable and reproducible.
 -->
 
 ---
@@ -158,14 +146,7 @@ they have to choose the winner and wire the flow themselves.
 
 Ship a worse `v2`, then realise it in production:
 
-```python
-registry.list_versions()
-#  version  aliases
-#       2   [champion]   ← the bad one
-#       1   []
-
-registry.set_alias("champion", 1)
-```
+<<< ../../snippets/registry_rollback.py python
 
 </div>
 <div>

@@ -127,33 +127,23 @@ holds many runs; each run = params + metrics + artifacts, in one comparable stor
 
 # Track Your Runs
 
-Wrap each run — you add this to your training loop:
+Borrow this from `snippets/tracking.py` — don't retype it:
 
-```python
-import mlflow
+<<< ../../snippets/tracking.py python
 
-mlflow.set_tracking_uri("sqlite:///mlruns/mlflow.db")
-mlflow.set_experiment("nyc-taxi-duration")
-
-with mlflow.start_run(run_name="rf_baseline"):
-    mlflow.log_param("n_estimators", 100)
-    mlflow.log_param("max_depth", 10)
-
-    model.fit(X_train, y_train)
-    metrics = evaluate_model(y_test, model.predict(X_test))
-
-    mlflow.log_metric("rmse", metrics["rmse"])
-    mlflow.log_metric("r2", metrics["r2"])
-    mlflow.sklearn.log_model(model, name="model")   # artifact only — register later
-```
-
-Then explore them: `make mlflow`
+<div class="mt-2 text-sm opacity-70">
+<strong>marimo gotcha:</strong> each variable lives in exactly one cell. This one cell
+defines <code>model</code> and <code>metrics</code>, so it <em>replaces</em> the separate
+train and evaluate cells — don't redeclare them. Then explore runs: <code>make mlflow</code>
+</div>
 
 <!--
-TIER 1/2 BUILD. Participants add this to their own run from the exercise. We log
-the model as an ARTIFACT only — no registered_model_name here. Registration is a
-separate, deliberate step in the registry section, so each loop has its own
-discovery moment.
+TIER 1/2 BUILD. Participants borrow snippets/tracking.py into 02_train.py. The
+marimo teaching point: a name is defined once, so the tracking cell must REPLACE
+the separate train + evaluate cells and return BOTH model and metrics — that's why
+we combined them. We log the model as an ARTIFACT only (no registered_model_name);
+registration is a separate, deliberate step in the registry section so each loop
+keeps its own discovery moment.
 -->
 
 ---

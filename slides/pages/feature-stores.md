@@ -112,13 +112,7 @@ TIER 0 — name the actual problem. This is where train-serve skew becomes concr
 
 Main branch view: the building blocks are Feast itself.
 
-```python
-from feast import FeatureStore
-
-store = FeatureStore(repo_path="feature_repo")
-training_df = store.get_historical_features(...)
-online = store.get_online_features(...)
-```
+<<< ../../snippets/feast_demo.py python
 
 <div class="mt-6 text-sm opacity-70">
 The runnable end-to-end wiring lives on the feature-store demo branch.

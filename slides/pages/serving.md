@@ -86,14 +86,7 @@ right answer for many ML systems — don't oversell real-time.
 
 The batch job turns into a long-lived service:
 
-```python
-# on startup — same alias, still the source of truth
-model = registry.load_model("champion")
-
-@app.post("/predict")
-def predict(trip):
-    return model.predict(features(trip))
-```
+<<< ../../snippets/serving_app.py python
 
 The registry alias still decides what's live. Now you also deploy the **service** around it.
 

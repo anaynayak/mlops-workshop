@@ -95,6 +95,16 @@ link on the entry slide, and a row to this table.
 
 ## Conventions
 
+- **Borrowable code is single-source.** Runnable snippets live in the repo-root
+  `snippets/` dir; slides render them with Slidev's file include
+  (`<<< ../../snippets/NAME.py python`, relative to the page file in `pages/`).
+  Participants copy from the same files (see `snippets/README.md`). Don't paste code
+  inline on a slide if it's meant to be borrowed — edit the snippet file instead, so
+  the slide and the copy-source can't drift.
+- **marimo-safe snippets.** Any snippet destined for a marimo notebook must respect
+  the one-definition-per-cell rule: a variable is defined in exactly one cell. E.g.
+  `snippets/tracking.py` defines `model` and `metrics` in a single cell and thus
+  *replaces* the separate train + evaluate cells — it can't coexist with them.
 - Diagrams use the Excalidraw addon: `<Excalidraw drawFilePath="./draw/NAME.excalidraw" .../>`.
   Source files live in `draw/`. Don't reference a `drawFilePath` that doesn't exist
   (it breaks rendering) — use HTML/markdown layout if no diagram exists yet.
