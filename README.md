@@ -18,6 +18,29 @@ make sample
 make lab
 ```
 
+> **On Windows, or a machine without `make`?** Use `uv run poe <task>` instead of
+> `make <task>` (e.g. `uv sync`, `uv run poe data`, `uv run poe lab`). See
+> [`docs/WINDOWS.md`](docs/WINDOWS.md) for the full setup and gotchas, and
+> [`docs/CLOUD.md`](docs/CLOUD.md) for a browser-only fallback.
+
+## Catch up to a stage
+
+Fallen behind, or want to jump ahead to a solved checkpoint? Each stage has a
+branch with that stage finished:
+
+```bash
+git checkout 01-experimentation   # tracking wired up
+git checkout 02-registry          # model registry wired up
+git checkout 03-cicd              # CI/CD stage
+git checkout 04-feature-store     # feature store stage
+```
+
+## Borrow the code
+
+The code shown on the slides lives in [`snippets/`](snippets/) as runnable files —
+copy from there instead of retyping from the projector. The slides render these same
+files, so they never drift apart.
+
 ## Notebooks
 
 | Notebook | Topic |
