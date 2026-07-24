@@ -44,7 +44,6 @@ The data scientist has done the exploratory work and shared a notebook with you.
 
 <div class="text-sm opacity-70 mt-3">
 Full Windows setup and gotchas: <code>docs/WINDOWS.md</code>.
-Behind? <code>git checkout 02-registry</code> jumps to a stage's finished state.
 </div>
 
 The data: **20M NYC taxi trips** (FHVHV dataset) · Target: predict `trip_time` in seconds
