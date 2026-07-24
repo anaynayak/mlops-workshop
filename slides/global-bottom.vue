@@ -22,7 +22,10 @@ const section = computed(() => {
 <template>
   <footer v-if="currentLayout !== 'section' && currentLayout !== 'cover'" class="global-footer">
     <span v-if="section" class="section-crumb">{{ section }}</span>
-    <span class="slide-number">{{ currentPage }}</span>
+    <span class="footer-right">
+      <Link to="setup" class="setup-link">Setup</Link>
+      <span class="slide-number">{{ currentPage }}</span>
+    </span>
   </footer>
 </template>
 
@@ -42,6 +45,20 @@ const section = computed(() => {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   opacity: 0.4;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.setup-link {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  border-bottom: 1px dotted currentColor;
 }
 
 .slide-number {

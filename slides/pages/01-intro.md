@@ -14,29 +14,45 @@ We want to know how long a ride will take before the passenger gets in the car. 
 -->
 
 ---
+routeAlias: setup
+---
 
 # Where We Start
 
 The data scientist has done the exploratory work and shared a notebook with you.
 
-**Get set up:**
+**Get set up** — pick your platform (borrow from `snippets/`):
 
-```bash
-git clone https://github.com/anaynayak/mlops-workshop
-make setup
-make data
-make sample
-make lab
-```
+<div class="grid grid-cols-2 gap-6 mt-4">
+<div>
 
-**Open the notebook:**
-- `notebooks/00_setup.py` — Setup
+### macOS / Linux
 
-The data: **20M NYC taxi trips** (FHVHV dataset)
-Target: predict `trip_time` in seconds
+<<< ../../snippets/setup_macos_linux.sh bash
+
+</div>
+<div>
+
+### Windows (or no `make`)
+
+<<< ../../snippets/setup_windows.sh bash
+
+</div>
+</div>
+
+**Open the notebook:** `notebooks/00_setup.py` — Setup
+
+<div class="text-sm opacity-70 mt-3">
+Full Windows setup and gotchas: <code>docs/WINDOWS.md</code>.
+Behind? <code>git checkout 02-registry</code> jumps to a stage's finished state.
+</div>
+
+The data: **20M NYC taxi trips** (FHVHV dataset) · Target: predict `trip_time` in seconds
 
 <!--
 - Run these in background. Let me know if you run into issues.
-- Will build some more context in the background.
+- This slide has routeAlias "setup" — the footer "Setup" link jumps back here anytime.
+- Windows attendees: use `uv run poe <task>` (docs/WINDOWS.md), no make needed.
+- Catch-up branches: 01-experimentation, 02-registry, 03-cicd, 04-feature-store.
 - Open VSCode + Browser marimo session.
 -->
