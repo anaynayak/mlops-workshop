@@ -8,13 +8,17 @@ Assumes training runs were logged to the workshop tracking store with the model
 under the artifact path ``"model"`` (e.g. ``mlflow.sklearn.log_model(model, "model")``).
 """
 
+import os
+
 import mlflow
 import pandas as pd
 from mlflow import MlflowClient
 from mlflow.entities.model_registry import ModelVersion
 
 # Workshop conventions — same store the training scripts/notebooks write to.
-TRACKING_URI = "sqlite:///mlruns/mlflow.db"
+# Defaults to local SQLite; set MLFLOW_TRACKING_URI to run against a hosted
+# server (e.g. DagsHub) without code changes — see docs/CLOUD.md.
+TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI", "sqlite:///mlruns/mlflow.db")
 EXPERIMENT_NAME = "nyc-taxi-duration"
 MODEL_NAME = "nyc-taxi-duration"
 

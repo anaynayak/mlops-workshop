@@ -13,8 +13,9 @@ from mlops_workshop.evaluate import evaluate_model, print_metrics
 
 
 def main():
-    # Configure MLflow to use SQLite backend
-    mlflow.set_tracking_uri("sqlite:///mlruns/mlflow.db")
+    # Configure MLflow. Defaults to the local SQLite backend; set MLFLOW_TRACKING_URI
+    # to point at a hosted server (e.g. DagsHub) without touching the code — see docs/CLOUD.md.
+    mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", "sqlite:///mlruns/mlflow.db"))
     mlflow.set_experiment("nyc-taxi-duration")
 
     print("Loading data...")
@@ -53,7 +54,7 @@ def main():
         mlflow.log_metric("mape", metrics["mape"])
 
         # Log model
-        mlflow.sklearn.log_model(model, "model")
+        mlflow.sklearn.log_model(model, name="model")
 
         print("\nSaving model...")
         save_model(model, "models/rf_model.joblib")
