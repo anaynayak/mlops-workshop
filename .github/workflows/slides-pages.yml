@@ -46,9 +46,23 @@ jobs:
         working-directory: slides
         run: pnpm install --frozen-lockfile
 
+      - name: Install Playwright system dependencies
+        working-directory: slides
+        run: pnpm exec playwright install-deps chromium
+
       - name: Build Slidev deck
         working-directory: slides
         run: pnpm run build -- --base "${{ steps.pages.outputs.base_path }}/"
+
+      - name: Export deck to PDF
+        working-directory: slides
+        run: pnpm exec slidev export --output dist/mlops-workshop.pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlops-workshop-pdf
+          path: slides/dist/mlops-workshop.pdf
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

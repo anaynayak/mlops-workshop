@@ -16,5 +16,8 @@
     "addons": [
       "slidev-addon-excalidraw"
     ]
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.62.0"
   }
 }

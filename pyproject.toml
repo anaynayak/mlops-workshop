@@ -43,3 +43,4 @@ infer  = { cmd = "python scripts/infer.py", help = "Run the batch inference scri
 test   = { cmd = "pytest -v", help = "Run the test suite" }
 mlflow = { cmd = "mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db", help = "Launch the MLflow UI" }
 slides = { cmd = "npm run dev", cwd = "slides", help = "Launch the Slidev deck" }
+slides-pdf = { cmd = "npm run export -- --output dist/mlops-workshop.pdf", cwd = "slides", help = "Export the deck to slides/dist/mlops-workshop.pdf" }

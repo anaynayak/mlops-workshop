@@ -1,4 +1,4 @@
-.PHONY: setup data sample lab train infer test mlflow slides
+.PHONY: setup data sample lab train infer test mlflow slides slides-pdf
 
 # Task definitions live in pyproject.toml under [tool.poe.tasks].
 # These targets are thin wrappers so `make <target>` still works on
@@ -31,3 +31,6 @@ mlflow:
 
 slides:
 	uv run poe slides
+
+slides-pdf:
+	uv run poe slides-pdf
