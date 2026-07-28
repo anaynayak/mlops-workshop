@@ -88,6 +88,30 @@ Alert on degradation
   - https://huyenchip.com/mlops/
   - https://ml-ops.org/
 
-<div class="abs-br mr-6 mb-10 text-sm opacity-50">
-  Thank you!
+---
+layout: center
+class: text-center
+---
+
+# Thank you!
+
+Questions and feedback are very welcome - reach out any time.
+
+<div class="flex items-center justify-center gap-12 mt-10">
+<div class="text-left text-lg">
+
+**Anay Nayak**
+
+[linkedin.com/in/anaynayak](https://linkedin.com/in/anaynayak)
+
+`github.com/anaynayak/mlops-workshop`
+
+</div>
+<div class="text-center">
+
+<img src="/repo-qr.png" class="w-40 h-40" />
+
+<div class="text-sm opacity-60 mt-1">Scan for the workshop repo</div>
+
+</div>
 </div>
